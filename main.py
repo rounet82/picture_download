@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import requests, random
-import uuid, os, shutil
+import uuid, os
 import sqlite3
 
 
@@ -47,7 +47,7 @@ def download_picture(item_id: str, q: int | None = None):
         with open(f"pictures/{filename}", "wb") as f:
             f.write(response.content)
         cursor.execute("INSERT INTO files (name, data) VALUES (?, ?)", (filename, response.content))
-        shutil.move("pictures/" + filename, "pictures/latest_picture.jpg")
+        os.remove("pictures/" + filename)
     conn.commit()
     conn.close()
     
@@ -66,13 +66,13 @@ def get_latest_picture():
         name, data = row
         if not os.path.exists("pictures"):
             os.makedirs("pictures")
-        filepath = os.path.join("pictures", "latest_picture.jpg")
+        filepath = os.path.join("pictures", name)
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
         with open(filepath, "wb") as f:
             f.write(data)
         conn.commit()
         conn.close()
-        return {"message": f"Latest picture '{name}' downloaded"}
+        return ({"message": filepath})
     else:
         conn.commit()
         conn.close()
