@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  picture-app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./pictures:/app/pictures
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
