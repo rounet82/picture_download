@@ -1,7 +1,8 @@
 version: '3.8'
 
 services:
-  picture-app:
+  # FastAPI backend
+  api:
     build: .
     ports:
       - "8000:8000"
@@ -9,4 +10,20 @@ services:
       - ./pictures:/app/pictures
     environment:
       - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  # Streamlit frontend
+  streamlit:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./pictures:/app/pictures
+    environment:
+      - PYTHONUNBUFFERED=1
+      - API_HOST=api
+      - API_PORT=8000
+    command: streamlit run picture_download/picture_app.py --server.address=0.0.0.0
+    depends_on:
+      - api
     restart: unless-stopped
