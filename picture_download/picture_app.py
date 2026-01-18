@@ -6,6 +6,7 @@ def fetch_data(url):
     response = requests.get(url)
     return response.json()
 
+
 st.title("Select the animal and the number of pictures to download")
 
 animals = ["dog", "cat", "fox"]
@@ -24,3 +25,4 @@ if st.button("Get Latest Picture"):
     print(data["message"])
     img = Image.open(data["message"])
     st.image(img, caption="Latest picture", width="stretch")
+

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import requests, random
 import uuid, os
 import sqlite3
-
+import uvicorn
 
 app = FastAPI()
 
@@ -77,3 +77,7 @@ def get_latest_picture():
         conn.commit()
         conn.close()
         return {"message": "No pictures found in the database"}
+    
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000)
