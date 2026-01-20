@@ -8,6 +8,7 @@
 
 # How to install the app manually
 The following commands are to be run on a Linux terminal.
+The tool is to be run on a local machine.
 
 ## Pull the code
 `git clone https://github.com/rounet82/picture_download.git`
@@ -20,9 +21,9 @@ sudo apt install python3 python3.12-venv python3-pip
 
 ## Install packages
 ```
+cd picture_download
 python3 -m venv .venv
 source .venv/bin/activate
-cd picture_download
 pip install -e .
 ```
 
@@ -31,7 +32,7 @@ pip install -e .
 ```
 python -m picture_download.main
 ```
-Open http://0.0.0.0:8000  in a browser.
+Open http://127.0.0.1:8000  in a browser.
 
 ## Run the UI (in a new terminal window)
 ```
@@ -39,7 +40,7 @@ source .venv/bin/activate
 cd picture_download
 streamlit run picture_download/picture_app.py
 ```
-Open http://0.0.0.0:8501 in a browser. 
+Open http://127.0.0.1:8501 in a browser. 
 
 ## Test the app
 After running the main app
@@ -54,4 +55,4 @@ streamlit run picture_download/picture_app.py
 git clone https://github.com/rounet82/picture_download.git
 docker-compose up
 ```
-Open http://0.0.0.0:8501 in a browser. 
+Open http://127.0.0.1:8501 in a browser. 
