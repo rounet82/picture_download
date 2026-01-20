@@ -51,8 +51,20 @@ streamlit run picture_download/picture_app.py
 ```
 
 # How to run the app in a container environment
+If docker is not installed on your host, follow the [instructions](https://docs.docker.com/engine/install/) to install it then:
+```
+sudo apt install docker-compose
+sudo usermod -aG docker $USER
+newgrp docker
+```
+Then run the container
 ```
 git clone https://github.com/rounet82/picture_download.git
+cd picture_download
 docker-compose up
 ```
 Open http://127.0.0.1:8501 in a browser. 
+
+
+# Running on an EC2 instance on AWS
+It is also possible to run this solution on an EC2 instance. Justs make sure the Security Group allows the traffic on the correct port (preferrably with your source public IP address to be more secure).
