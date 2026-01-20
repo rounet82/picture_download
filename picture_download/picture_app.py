@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 from PIL import Image
 import os
+from io import BytesIO
 
 def fetch_data(url):
     response = requests.get(url)
@@ -21,13 +22,12 @@ numbers = list(range(1, 11))  # [1, 2, ..., 10]
 num = st.selectbox("Choose a number:", numbers, index=0)
 
 if st.button("Go"):
-    data = fetch_data(f"{API_URL}/picture/{animal}/{num}")
-    st.write(data["message"])
+    response = requests.get(f"{API_URL}/picture/{animal}/{num}")
+    st.write(response.json()["message"])
 
 st.title("Get the latest downloaded picture")
 if st.button("Get Latest Picture"):
-    data = fetch_data(f"{API_URL}/picture/latest")
-    print(data["message"])
-    img = Image.open(data["message"])
-    st.image(img, caption="Latest picture", width="stretch")
+    response = requests.get(f"{API_URL}/picture/latest")
+    image = Image.open(BytesIO(response.content))
+    st.image(image, caption="Latest picture", width="stretch")
 

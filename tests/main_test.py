@@ -25,16 +25,16 @@ def test_get_latest_picture():
     
     response = requests.get("http://localhost:8000/picture/latest")
     assert response.status_code == 200
-    json_response = response.json()
-    assert "message" in json_response
     
-    message = json_response.get("message", "")
+    # Verify the response is an image file (binary content)
+    assert len(response.content) > 0, "Response should contain image data"
     
-    # Verify the message is one of the expected ones
-    pattern = r'pictures/([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\.jpg)'
+    # Verify the content-type header indicates an image
+    content_type = response.headers.get("content-type", "")
+    assert "image" in content_type.lower(), f"Expected image content-type, got {content_type}"
     
-    assert re.search(pattern, message), \
-        f"Unexpected message: {message}"
+    # Verify the response starts with JPEG magic bytes (FFD8FFE0 or FFD8FFE1)
+    assert response.content[:2] == b'\xff\xd8', "Response should be valid JPEG data"
     
 
 if __name__ == "__main__":

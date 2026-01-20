@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 import requests, random
 import uuid, os
 import sqlite3
@@ -72,7 +73,7 @@ def get_latest_picture():
             f.write(data)
         conn.commit()
         conn.close()
-        return ({"message": filepath})
+        return FileResponse(filepath)
     else:
         conn.commit()
         conn.close()
