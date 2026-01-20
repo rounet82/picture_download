@@ -13,7 +13,10 @@ The following commands are to be run on a Linux terminal.
 `git clone https://github.com/rounet82/picture_download.git`
 
 ## Install python
-`apt install python3 python3-pip`
+```
+sudo apt update
+sudo apt install python3 python3.12-venv python3-pip
+```
 
 ## Install packages
 ```
@@ -39,6 +42,7 @@ streamlit run picture_download/picture_app.py
 Open http://0.0.0.0:8501 in a browser. 
 
 ## Test the app
+After running the main app
 ```
 source .venv/bin/activate
 cd picture_download
