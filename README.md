@@ -36,8 +36,8 @@ Open http://127.0.0.1:8000  in a browser.
 
 ## Run the UI (in a new terminal window)
 ```
-source .venv/bin/activate
 cd picture_download
+source .venv/bin/activate
 streamlit run picture_download/picture_app.py
 ```
 Open http://127.0.0.1:8501 in a browser. 
