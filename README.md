@@ -67,4 +67,4 @@ Open http://127.0.0.1:8501 in a browser.
 
 
 # Running on an EC2 instance on AWS
-It is also possible to run this solution on an EC2 instance. Justs make sure the Security Group allows the traffic on the correct port (preferrably with your source public IP address to be more secure).
+It is also possible to run this solution on an EC2 instance. Just make sure the Security Group allows the traffic on the correct port (preferably with your source public IP address to be more secure).
