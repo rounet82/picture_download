@@ -27,6 +27,11 @@ source .venv/bin/activate
 pip install -e .
 ```
 
+### Install dev dependencies (for testing)
+```
+pip install -e ".[dev]"
+```
+
 # How to run the app manually
 ## Run the main app
 ```
@@ -49,6 +54,19 @@ source .venv/bin/activate
 cd picture_download
 streamlit run picture_download/picture_app.py
 ```
+
+## Run unit tests
+Run tests with Mock to verify API calls:
+```
+source .venv/bin/activate
+python -m pytest tests/unit_tests.py -v
+```
+
+Run tests with coverage report:
+```
+python -m pytest tests/unit_tests.py --cov=picture_download --cov-report=html -v
+```
+The HTML coverage report will be generated in `htmlcov/index.html`
 
 # How to run the app in a container environment
 If docker is not installed on your host, follow the [instructions](https://docs.docker.com/engine/install/) to install it then:
