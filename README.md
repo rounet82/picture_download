@@ -56,6 +56,7 @@ python3 tests/main_test.py
 ```
 
 ## Run unit tests
+Make sure you run the app once before unit testing.
 Run tests with Mock to verify API calls:
 ```
 source .venv/bin/activate
