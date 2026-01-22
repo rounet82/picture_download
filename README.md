@@ -47,12 +47,12 @@ streamlit run picture_download/picture_app.py
 ```
 Open http://127.0.0.1:8501 in a browser. 
 
-## Test the app
+## Run integration tests
 After running the main app
 ```
 source .venv/bin/activate
 cd picture_download
-streamlit run picture_download/picture_app.py
+python3 tests/main_test.py
 ```
 
 ## Run unit tests
