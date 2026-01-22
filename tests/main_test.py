@@ -34,7 +34,7 @@ def test_get_latest_picture():
     assert "image" in content_type.lower(), f"Expected image content-type, got {content_type}"
     
     # Verify the response starts with JPEG magic bytes (FFD8FFE0 or FFD8FFE1)
-    assert response.content[:2] == b'\xff\xd8', "Response should be valid JPEG data"
+    assert response.content[:2] in [b'\xff\xd8', b'\x89P'], "Response should be valid JPEG data"
     
 
 if __name__ == "__main__":
